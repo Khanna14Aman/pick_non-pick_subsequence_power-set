@@ -1,0 +1,35 @@
+#include<iostream>    //power set algorithm print all in ascending order eg {},{1},{2}....{123}etc.
+#include<vector>
+using namespace std;
+void pick_non_pick(int n, int a[], int ind, vector<int>v)
+{
+	if(ind==n)
+	{
+		cout<<"\n{";
+		for(auto it : v)
+		{
+			cout<<it;
+		}
+		cout<<"}";
+		return;
+	}
+	v.emplace_back(a[ind]);
+	pick_non_pick(n,a,ind+1,v);
+	v.pop_back();
+	pick_non_pick(n,a,ind+1,v);
+}
+int main()
+{
+	int n;
+	cout<<"\nenter size of an array\n";
+	cin>>n;
+	int a[n];
+	cout<<"\nenter element of an array\n";
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	vector<int>v;
+	pick_non_pick(n,a,0,v);
+	return 0;
+}
